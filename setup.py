@@ -9,14 +9,13 @@ setuptools.setup(
     author_email="jinniahn@gmail.com",
 
     description="extracting tv channel information for web",
-    long_description=open('README.rst').read(),
+    long_description=open('README.org').read(),
 
     packages=setuptools.find_packages(),
 
     entry_points = {
         'console_scripts': ['kt_tv_export=kt_tv_ch.db_export:main']
-    }
-
+    },
     install_requires=[
         'requests','pyquery'
     ],

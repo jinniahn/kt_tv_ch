@@ -1,4 +1,4 @@
-from kt_tv_channel import *
+from .kt_tv_channel import *
 import sqlite3
 from datetime import date
 

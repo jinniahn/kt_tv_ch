@@ -1,0 +1,40 @@
+* kt_tv_ch
+
+  extracting tv channel information for web
+
+* Usage
+
+#+begin_src python :results output replace :exports both
+from kt_tv_cahnnel import *
+
+channels = get_all_channels()
+for ch in channels:
+    get_schedule(ch)
+#+end_src
+
+
+* Installation
+
+#+begin_src sh :results output :exports both
+pip3 install 
+#+end_src
+
+
+* Requirements
+
+  - python3
+  - requests
+  - pyquery
+
+
+* Compatibility
+  
+  python3 supported only
+
+* Licence
+  
+  MIT license
+
+* Authors
+
+  - jinsub ahn <jinniahn@gmail.com>

@@ -10,4 +10,8 @@ def test_get_channel():
     print(channels)
     assert len(channels) > 0
 
+print(get_schedule(85))
+
+#test_get_channel()
+
 

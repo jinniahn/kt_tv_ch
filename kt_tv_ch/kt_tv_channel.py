@@ -34,7 +34,7 @@ def get_all_channels():
 		       'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) '
 		       'AppleWebKit/537.36 (KHTML, like Gecko) '
 		       'Chrome/62.0.3202.94 Safari/537.36'},
-           'url': 'http://tv.kt.com/tv/channel/pChInfo.asp'}
+           'url': 'http://tv.kt.com/'}
 
     resp = requests.get(req['url'], headers=req['headers'])
     content = resp.content.decode('euc-kr')
@@ -58,19 +58,19 @@ def get_schedule(ch, date=None):
     req = {'compressed': True,
            'data': [('ch_type', '1'), ('service_ch_no', ch), ('view_type', '1')],
            'headers': {'Accept': 'text/html, */*; q=0.01',
-		       'Accept-Encoding': 'gzip, deflate',
-		       'Accept-Language': 'en-US,en;q=0.9,ko;q=0.8',
-		       'Cache-Control': 'no-cache',
-		       'Connection': 'keep-alive',
-		       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-		       'Cookie': None,
-		       'Origin': 'http://tv.kt.com',
-		       'Pragma': 'no-cache',
-		       'Referer': 'http://tv.kt.com/tv/channel/pChInfo.asp',
-		       'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) '
-		       'AppleWebKit/537.36 (KHTML, like Gecko) '
-		       'Chrome/62.0.3202.94 Safari/537.36',
-		       'X-Requested-With': 'XMLHttpRequest'},
+        	       'Accept-Encoding': 'gzip, deflate',
+        	       'Accept-Language': 'en-US,en;q=0.9,ko;q=0.8',
+        	       'Cache-Control': 'no-cache',
+        	       'Connection': 'keep-alive',
+        	       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        	       'Cookie': None,
+        	       'Origin': 'http://tv.kt.com',
+        	       'Pragma': 'no-cache',
+        	       'Referer': 'http://tv.kt.com/tv/channel/pChInfo.asp',
+        	       'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) '
+        	       'AppleWebKit/537.36 (KHTML, like Gecko) '
+        	       'Chrome/62.0.3202.94 Safari/537.36',
+        	       'X-Requested-With': 'XMLHttpRequest'},
            'url': 'http://tv.kt.com/tv/channel/pSchedule.asp'}
 
     # add specific date if |date| is existed
@@ -79,11 +79,9 @@ def get_schedule(ch, date=None):
             req['data'].append(('seldate', '{:%Y%m%d}'.format(date)))
         else:
             req['data'].append(('seldate', data))
-            
 
-    # get web page
     resp = requests.post(req['url'], req['data'], headers=req['headers'])
-    content = resp.content.decode('euc-kr')
+    content = resp.content.decode('euc-kr', errors='ignore')
 
     # parsing pages
     h = pq(content)
